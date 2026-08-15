@@ -1,87 +1,452 @@
-<h2>Configuration</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>__USER_NAME__ - Configuration</title>
 
-<div class="config">
-    <b>Universal Subscription</b><br>
+    <style>
+        body {
+            background: #c0c0c0;
+            color: #000000;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 16px;
+            margin: 20px;
+        }
 
-    <textarea
-        id="normal"
-        readonly
-        placeholder="Loading configuration..."
-    ></textarea>
+        .page {
+            width: 700px;
+            max-width: 95%;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 3px ridge #ffffff;
+            padding: 10px;
+        }
 
-    <br>
+        h1 {
+            font-size: 28px;
+            margin: 5px 0;
+        }
 
-    <button onclick="copyConfig()">Copy</button>
+        h2 {
+            font-size: 20px;
+            background: #000080;
+            color: white;
+            padding: 3px 6px;
+            margin: 15px 0 5px;
+        }
+
+        a {
+            color: #0000ee;
+            text-decoration: underline;
+        }
+
+        a:visited {
+            color: #551a8b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        td,
+        th {
+            border: 1px solid #000000;
+            padding: 5px;
+            text-align: left;
+        }
+
+        th {
+            background: #d0d0d0;
+        }
+
+        .usage {
+            background: #eeeeee;
+            border: 2px inset #ffffff;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .config {
+            background: #eeeeee;
+            border: 2px inset #ffffff;
+            padding: 6px;
+            margin: 5px 0;
+        }
+
+        .config-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            box-sizing: border-box;
+
+            padding: 5px;
+
+            border: 2px inset #ffffff;
+
+            background: #ffffff;
+            color: #000000;
+
+            font-family: "Courier New", monospace;
+            font-size: 12px;
+
+            resize: vertical;
+        }
+
+        button {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+
+            padding: 2px 8px;
+
+            border: 2px outset #ffffff;
+            background: #c0c0c0;
+
+            cursor: pointer;
+        }
+
+        button:active {
+            border-style: inset;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <h1>__USER_NAME__</h1>
+
+    <hr>
+
+
+    <!-- ========================= -->
+    <!-- ACCOUNT INFORMATION       -->
+    <!-- ========================= -->
+
+    <h2>Account Information</h2>
+
+    <table>
+
+        <tr>
+            <th>Name</th>
+            <td>__USER_NAME__</td>
+        </tr>
+
+        <tr>
+            <th>Usage</th>
+            <td>
+                __TOTAL_GB__ GB /
+                __LIMIT_TOTAL_GB__ GB
+            </td>
+        </tr>
+
+        <tr>
+            <th>Daily Usage</th>
+            <td>
+                __DAILY_GB__ GB /
+                __LIMIT_DAILY_GB__ GB
+            </td>
+        </tr>
+
+        <tr>
+            <th>Expires</th>
+            <td>__EXPIRY_DATE__</td>
+        </tr>
+
+        <tr>
+            <th>Status</th>
+            <td>__STATUS_CODE__</td>
+        </tr>
+
+    </table>
+
+
+    <!-- ========================= -->
+    <!-- USAGE                     -->
+    <!-- ========================= -->
+
+    <h2>Usage</h2>
+
+    <div class="usage">
+
+        <b>Total:</b>
+        __TOTAL_GB__ GB /
+        __LIMIT_TOTAL_GB__ GB
+
+        <br><br>
+
+        <b>Today:</b>
+        __DAILY_GB__ GB /
+        __LIMIT_DAILY_GB__ GB
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- CONFIGURATION             -->
+    <!-- ========================= -->
+
+    <h2>Configuration</h2>
+
+    <div class="config">
+
+        <div class="config-title">
+            Universal Subscription
+        </div>
+
+        <textarea
+            id="normal"
+            readonly
+            placeholder="Loading configuration..."
+        ></textarea>
+
+        <br><br>
+
+        <button onclick="copyConfig()">
+            Copy
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- FOOTER                    -->
+    <!-- ========================= -->
+
+    <hr>
+
+    <div class="footer">
+
+        <a href="__SYNC_NORMAL__">
+            Subscription Link
+        </a>
+
+        |
+
+        <a href="https://t.me/+mx5EmkbHzm41Y2Q5">
+            Support
+        </a>
+
+        <br><br>
+
+        This page is best viewed with a modern browser.
+
+    </div>
+
 </div>
 
 
 <script>
+
+/*
+ * The subscription URL.
+ *
+ * The server replaces __SYNC_NORMAL__
+ * with the real subscription URL.
+ */
 const subscriptionUrl = "__SYNC_NORMAL__";
 
+
+/*
+ * Load the subscription.
+ */
 async function loadConfig() {
+
     const output = document.getElementById("normal");
 
     try {
+
+        /*
+         * Request the subscription URL.
+         */
         const response = await fetch(subscriptionUrl, {
             method: "GET",
             cache: "no-store"
         });
 
+
+        /*
+         * Check HTTP response.
+         */
         if (!response.ok) {
-            throw new Error("HTTP " + response.status);
+
+            throw new Error(
+                "HTTP " + response.status
+            );
+
         }
 
+
+        /*
+         * Get the Base64 response.
+         */
         const base64 = await response.text();
 
-        /*
-         * Remove whitespace/newlines that may
-         * exist in the Base64 response.
-         */
-        const cleanBase64 = base64
-            .replace(/\s/g, "");
 
         /*
-         * Decode Base64 as UTF-8.
+         * Remove spaces, tabs and newlines.
+         *
+         * This is useful when the Base64 response
+         * is split across multiple lines.
+         */
+        let cleanBase64 = base64.replace(/\s/g, "");
+
+
+        /*
+         * Support URL-safe Base64 too.
+         *
+         * Converts:
+         *
+         * - -> +
+         * _ -> /
+         */
+        cleanBase64 = cleanBase64
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+
+
+        /*
+         * Add missing Base64 padding if necessary.
+         */
+        while (cleanBase64.length % 4 !== 0) {
+            cleanBase64 += "=";
+        }
+
+
+        /*
+         * Decode Base64.
          */
         const binary = atob(cleanBase64);
 
+
+        /*
+         * Convert binary data into bytes.
+         */
         const bytes = Uint8Array.from(
             binary,
-            char => char.charCodeAt(0)
+            function(char) {
+                return char.charCodeAt(0);
+            }
         );
 
-        const decoded = new TextDecoder("utf-8").decode(bytes);
 
+        /*
+         * Convert bytes to UTF-8 text.
+         */
+        const decoded = new TextDecoder(
+            "utf-8"
+        ).decode(bytes);
+
+
+        /*
+         * Display the decoded configuration.
+         */
         output.value = decoded.trim();
 
-    } catch (error) {
+    }
 
+
+    catch (error) {
+
+        /*
+         * Show error in the configuration box.
+         */
         output.value =
             "Unable to load configuration.\n\n" +
             error.message;
+
+        console.error(
+            "Configuration error:",
+            error
+        );
+
     }
+
 }
 
 
+/*
+ * Copy the decoded configuration.
+ */
 async function copyConfig() {
+
     const output = document.getElementById("normal");
 
+
+    /*
+     * Don't copy if nothing was loaded.
+     */
+    if (!output.value.trim()) {
+
+        alert(
+            "No configuration available."
+        );
+
+        return;
+
+    }
+
+
     try {
-        await navigator.clipboard.writeText(output.value);
 
-        alert("Configuration copied!");
+        /*
+         * Modern clipboard API.
+         */
+        await navigator.clipboard.writeText(
+            output.value
+        );
 
-    } catch (error) {
+        alert(
+            "Configuration copied!"
+        );
+
+    }
+
+
+    catch (error) {
+
+        /*
+         * Fallback for older browsers.
+         */
+        output.focus();
 
         output.select();
-        output.setSelectionRange(0, 99999);
+
+        output.setSelectionRange(
+            0,
+            999999
+        );
 
         document.execCommand("copy");
 
-        alert("Configuration copied!");
+        alert(
+            "Configuration copied!"
+        );
+
     }
+
 }
 
 
+/*
+ * Automatically load configuration
+ * when the page opens.
+ */
 loadConfig();
+
 </script>
+
+</body>
+</html>
