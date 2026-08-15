@@ -1,301 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>__USER_NAME__ - Configurationss</title>
+<h2>Configuration</h2>
 
-    <style>
-        body {
-            background: #c0c0c0;
-            color: #000000;
-            font-family: "Times New Roman", Times, serif;
-            font-size: 16px;
-            margin: 20px;
-        }
+<div class="config">
+    <b>Universal Subscription</b><br>
 
-        .page {
-            width: 700px;
-            max-width: 95%;
-            margin: 0 auto;
-            background: #ffffff;
-            border: 3px ridge #ffffff;
-            padding: 10px;
-        }
+    <textarea
+        id="normal"
+        readonly
+        placeholder="Loading configuration..."
+    ></textarea>
 
-        h1 {
-            font-size: 28px;
-            margin: 5px 0;
-        }
+    <br>
 
-        h2 {
-            font-size: 20px;
-            background: #000080;
-            color: white;
-            padding: 3px 6px;
-            margin: 15px 0 5px;
-        }
-
-        a {
-            color: #0000ee;
-            text-decoration: underline;
-        }
-
-        a:visited {
-            color: #551a8b;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 5px;
-        }
-
-        td, th {
-            border: 1px solid #000000;
-            padding: 5px;
-            text-align: left;
-        }
-
-        th {
-            background: #d0d0d0;
-        }
-
-        .usage {
-            background: #eeeeee;
-            border: 2px inset #ffffff;
-            padding: 8px;
-            margin-top: 5px;
-        }
-
-        .config {
-            background: #eeeeee;
-            border: 2px inset #ffffff;
-            padding: 6px;
-            margin: 5px 0;
-        }
-
-        .config-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        textarea {
-            width: 98%;
-            min-height: 90px;
-            resize: vertical;
-            padding: 4px;
-            border: 2px inset #ffffff;
-            background: #ffffff;
-            color: #000000;
-            font-family: "Courier New", monospace;
-            font-size: 12px;
-            box-sizing: border-box;
-        }
-
-        button {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 14px;
-            padding: 2px 8px;
-            border: 2px outset #ffffff;
-            background: #c0c0c0;
-            cursor: pointer;
-            margin-top: 4px;
-        }
-
-        button:active {
-            border-style: inset;
-        }
-
-        .loading {
-            color: #555555;
-            font-style: italic;
-        }
-
-        .error {
-            color: #990000;
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            margin-top: 15px;
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="page">
-
-    <h1>__USER_NAME__</h1>
-
-    <hr>
-
-    <!-- ========================= -->
-    <!-- USAGE - SECOND SECTION    -->
-    <!-- ========================= -->
-
-    <h2>Usage</h2>
-
-    <div class="usage">
-        <b>Total:</b>
-        __TOTAL_GB__ GB / __LIMIT_TOTAL_GB__ GB
-        <br><br>
-
-        <b>Today:</b>
-        __DAILY_GB__ GB / __LIMIT_DAILY_GB__ GB
-    </div>
-
-
-    <!-- ========================= -->
-    <!-- ACCOUNT INFORMATION       -->
-    <!-- ========================= -->
-
-    <h2>Account Information</h2>
-
-    <table>
-        <tr>
-            <th>Name</th>
-            <td>__USER_NAME__</td>
-        </tr>
-
-        <tr>
-            <th>Usage</th>
-            <td>__TOTAL_GB__ GB / __LIMIT_TOTAL_GB__ GB</td>
-        </tr>
-
-        <tr>
-            <th>Daily Usage</th>
-            <td>__DAILY_GB__ GB / __LIMIT_DAILY_GB__ GB</td>
-        </tr>
-
-        <tr>
-            <th>Expires</th>
-            <td>__EXPIRY_DATE__</td>
-        </tr>
-
-        <tr>
-            <th>Status</th>
-            <td>__STATUS_CODE__</td>
-        </tr>
-    </table>
-
-
-    <!-- ========================= -->
-    <!-- CONFIGURATION             -->
-    <!-- ========================= -->
-
-    <h2>Configuration</h2>
-
-    <div class="config">
-        <div class="config-title">Universal Subscription</div>
-
-        <textarea id="normal" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('normal')">Copy</button>
-    </div>
-
-
-    <div class="config">
-        <div class="config-title">Raw Config</div>
-
-        <textarea id="raw" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('raw')">Copy</button>
-    </div>
-
-
-    <div class="config">
-        <div class="config-title">Base64 / V2Ray</div>
-
-        <textarea id="base64" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('base64')">Copy</button>
-    </div>
-
-
-    <div class="config">
-        <div class="config-title">Sing-box</div>
-
-        <textarea id="singbox" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('singbox')">Copy</button>
-    </div>
-
-
-    <div class="config">
-        <div class="config-title">Clash</div>
-
-        <textarea id="clash" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('clash')">Copy</button>
-    </div>
-
-
-    <div class="config">
-        <div class="config-title">v2rayN</div>
-
-        <textarea id="v2rayn" readonly>Loading configuration...</textarea>
-        <br>
-
-        <button onclick="copyConfig('v2rayn')">Copy</button>
-    </div>
-
-
-    <hr>
-
-    <div class="footer">
-        <a href="__SYNC_NORMAL__">Subscription Link</a>
-        |
-        <a href="https://t.me/+mx5EmkbHzm41Y2Q5">Support</a>
-
-        <br><br>
-
-        This page is best viewed with a modern browser.
-    </div>
-
+    <button onclick="copyConfig()">Copy</button>
 </div>
 
 
 <script>
-
 const subscriptionUrl = "__SYNC_NORMAL__";
 
-
-/*
- * Load a configuration from the subscription endpoint.
- */
-async function loadConfig(id, flag) {
-
-    const output = document.getElementById(id);
+async function loadConfig() {
+    const output = document.getElementById("normal");
 
     try {
-
-        let url = subscriptionUrl;
-
-        if (flag) {
-            url += "?flag=" + encodeURIComponent(flag);
-        }
-
-        const response = await fetch(url, {
+        const response = await fetch(subscriptionUrl, {
             method: "GET",
             cache: "no-store"
         });
 
         if (!response.ok) {
-            throw new Error(
-                "HTTP " + response.status
-            );
+            throw new Error("HTTP " + response.status);
         }
 
-        const text = await response.text();
+        const base64 = await response.text();
 
-        output.value = text.trim();
+        /*
+         * Remove whitespace/newlines that may
+         * exist in the Base64 response.
+         */
+        const cleanBase64 = base64
+            .replace(/\s/g, "");
+
+        /*
+         * Decode Base64 as UTF-8.
+         */
+        const binary = atob(cleanBase64);
+
+        const bytes = Uint8Array.from(
+            binary,
+            char => char.charCodeAt(0)
+        );
+
+        const decoded = new TextDecoder("utf-8").decode(bytes);
+
+        output.value = decoded.trim();
 
     } catch (error) {
 
@@ -306,24 +63,18 @@ async function loadConfig(id, flag) {
 }
 
 
-/*
- * Copy the actual configuration,
- * not the subscription URL.
- */
-async function copyConfig(id) {
-
-    const input = document.getElementById(id);
+async function copyConfig() {
+    const output = document.getElementById("normal");
 
     try {
-
-        await navigator.clipboard.writeText(input.value);
+        await navigator.clipboard.writeText(output.value);
 
         alert("Configuration copied!");
 
     } catch (error) {
 
-        input.select();
-        input.setSelectionRange(0, 99999);
+        output.select();
+        output.setSelectionRange(0, 99999);
 
         document.execCommand("copy");
 
@@ -332,22 +83,5 @@ async function copyConfig(id) {
 }
 
 
-/*
- * Load all configurations.
- */
-loadConfig("normal", "");
-
-loadConfig("raw", "raw");
-
-loadConfig("base64", "base64");
-
-loadConfig("singbox", "singbox");
-
-loadConfig("clash", "clash");
-
-loadConfig("v2rayn", "vjson");
-
+loadConfig();
 </script>
-
-</body>
-</html>
